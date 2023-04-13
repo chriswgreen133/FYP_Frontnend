@@ -37,27 +37,6 @@ class AuthService {
           console.log("inside1 loginAxios")
           console.log(response.data)
           localStorage.setItem("user", JSON.stringify(response.data));
-          if (user.type == 'School') {
-            console.log("Inside Type School")
-            axios
-              .get('http://localhost:8080/searchSchool/search/')
-              .then(response1 => {
-                console.log("response from search")
-                console.log(response1)
-                console.log(response1.data)
-                response1.data.map((item)=>{
-                  if(item.adminID == response.data._id){
-                    console.log("Setting Local stotage school")
-                    localStorage.setItem("school", JSON.stringify({schoolID:item._id}));
-                  }
-                })
-                // if(response1.data.adminID == response.data._id){
-                //   console.log("Setting Local stotage school")
-                //   localStorage.setItem("school", JSON.stringify(response1.data));
-                // }
-                
-              });
-          }
         } else {
           console.log("LoginAxios failed")
         }

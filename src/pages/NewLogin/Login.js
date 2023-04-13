@@ -11,8 +11,6 @@ import {
   Link
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-// import Logo from './logo.jpg'
-import Logo from './one.jpg'
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
@@ -24,15 +22,14 @@ import { CometChat } from "@cometchat-pro/chat"
 
 
 // logo
-import logo from "../../logo.png";
-import google from "../../images/google.svg";
+// import logo from "../../logo.png";
+// import google from "../../images/google.svg";
 
 // context
 import { useUserDispatch, loginUser, admin } from "../../context/UserContext";
 import Widget from "../../components/Widget/Widget";
 
 let user = {
-  type: "",
   email: "",
   username: "",
   phoneNumber: 0,
@@ -40,7 +37,6 @@ let user = {
 }
 
 let userLogin = {
-  type: "",
   email: "",
   password: ""
 }
@@ -66,31 +62,14 @@ function Login(props) {
   var [allSchools, setAllSchools] = useState()
   let signupBool;
 
-  const getSchools = useCallback(async () => {
-    async function fetchData() {
-      let request;
-      request = await axios.get("http://localhost:8080/school/School_Details")
-      console.log("request")
-      console.log(request.data)
-      setAllSchools(request.data)
-      return request.data;
-    }
-    fetchData()
-  }, [])
-
-  useEffect(() => {
-    getSchools()
-  }, [])
-
   const signUpSubmit = () => {
-    if (typeValue === "" || emailValue === "" || nameValue === ""
+    if (emailValue === "" || nameValue === ""
       || phoneValue === 0 || passwordValue === "") {
       console.log('error, some field is empty')
       alert('error, some fields empty')
     } else {
       console.log("inside signUpSubmit")
 
-      user.type = typeValue
       user.email = emailValue
       user.username = nameValue
       user.phoneNumber = phoneValue
@@ -104,26 +83,23 @@ function Login(props) {
   }
 
   const loginSubmit = () => {
-    if (typeValue === "" || emailValue === "" || passwordValue === "") {
+    if (emailValue === "" || passwordValue === "") {
       console.log('error, some field is empty')
       alert('error, some fields empty')
     } else {
 
       console.log("inside loginSubmit")
 
-      userLogin.type = typeValue
       userLogin.email = emailValue
       userLogin.password = passwordValue
 
       console.log(userLogin)
       signupBool = false
-      sendRequest(signupBool, allSchools)
+      sendRequest(signupBool)
     }
   }
 
-
-
-  const sendRequest = useCallback(async (bool, allSchoolss) => {
+  const sendRequest = useCallback(async (bool) => {
     console.log("inside useEffect")
     async function fetchData() {
       console.log('inside fetchdata')
@@ -151,11 +127,11 @@ function Login(props) {
                 console.log("error", error);
               }
             )
-
             setActiveTabId(0)
           },
           error => {
             console.log("SignUp Error")
+            alert("Wrong Email or Password")
             console.log(error)
           }
         );
@@ -166,49 +142,23 @@ function Login(props) {
         console.log(userLogin)
         AuthService.login(userLogin).then(
           (response) => {
-            console.log(response)
-            if (response.type === "School") {
-              // props.history.push("/adminDashboard");
-              console.log("STEP1")
-              console.log(allSchoolss)
-              if (allSchoolss != undefined) {
-                console.log("STEP2")
-                let existingSchool = '';
-                existingSchool = allSchoolss.filter((item) => {
-                  if (item.adminID == response._id) {
-                    return item
-                  }
-                })
-                if (existingSchool == '') {
-                  props.history.push("/admin");
-                } else {
-                  props.history.push("/adminDashboard");
-                }
+            var UID = response._id
+            var authKey = "eec86b7681fa64295a4ce0b9c2a157885395785f";
 
-                //window.location.reload();
+            CometChat.login(UID, authKey).then(
+              user => {
+                console.log("Login Successful:", { user });
+              },
+              error => {
+                console.log("Login failed with exception:", { error });
               }
-
-            } else {
-              // console.log("Response")
-              // console.log(response)
-
-              var UID = response._id
-              var authKey = "eec86b7681fa64295a4ce0b9c2a157885395785f";
-
-              CometChat.login(UID, authKey).then(
-                user => {
-                  console.log("Login Successful:", { user });
-                },
-                error => {
-                  console.log("Login failed with exception:", { error });
-                }
-              );
-              props.history.push("/app/home");
-              // window.location.reload();
-            }
+            );
+            props.history.push("/app/home");
+            // window.location.reload();
           },
           error => {
             console.log(error)
+            alert("Wrong Email or Password")
           }
         );
       } else {
@@ -221,25 +171,9 @@ function Login(props) {
     fetchData()
   }, [])
 
-
-
-  //}, [props.fetchUrl1], [props.fetchUrl2])
-
-  console.log("Boolean")
-  console.log(signupBool)
-
   return (
-    // <div style={{ backgroundImage: `url(${Logo})` }}>
     <div>
       <Grid container className={classes.container}>
-        <div className={classes.logotypeContainer}>
-          {/* <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography  className={classes.logotypeText}>speech-wizard</Typography>
-        <Typography variant="h6" >
-                Finding the right school just got easier
-        </Typography> */}
-        </div>
-
         <div className={classes.formContainer}>
           <Widget disableWidgetMenu>
             <div className={classes.form}>
@@ -274,16 +208,6 @@ function Login(props) {
                       Something is wrong with your login or password :(
                 </Typography>
                   </Fade>
-                  {/* <form onSubmit={loginSubmit}> */}
-                  <text class={classes.signin}>Sign in as:</text>
-                  <RadioGroup class={classes.radio} name="type" value={typeValue}
-                    onChange={(e) => { setTypeValue(e.target.value) }} >
-                    <FormControlLabel value="School" control={<Radio color='inherit' />} label="School" />
-                    <FormControlLabel value="Teacher" control={<Radio color='inherit' />} label="Teacher" />
-                    <FormControlLabel value="Student" control={<Radio color='inherit' />} label="Student" />
-                    {/* <FormControlLabel value="Parent" control={<Radio color='inherit' />} label="Parent" /> */}
-                  </RadioGroup>
-
                   <TextField
                     id="email"
                     InputProps={{
@@ -329,16 +253,6 @@ function Login(props) {
                   >
                     Login
                   </Button>
-
-                  {/* <Button
-                    size="large"
-                    className={classes.forgetButton}
-                  >
-                    Forget Password
-                </Button> */}
-
-                  {/* <Link onClick={() => admin(props.history)}>hi</Link> */}
-                  {/* </form> */}
                 </React.Fragment>
               )}
               {activeTabId === 1 && (
@@ -354,16 +268,6 @@ function Login(props) {
                     <Typography className={classes.formDividerWord}></Typography>
                     <div className={classes.formDivider} />
                   </div>
-
-                  <text class={classes.signin}>Sign up as:</text>
-                  <RadioGroup class={classes.radio} name="type" value={typeValue}
-                    onChange={(e) => { setTypeValue(e.target.value) }}>
-                    <FormControlLabel value="School" control={<Radio color='inherit' />} label="School" />
-                    <FormControlLabel value="Teacher" control={<Radio color='inherit' />} label="Teacher" />
-                    <FormControlLabel value="Student" control={<Radio color='inherit' />} label="Student" />
-                    {/* <FormControlLabel value="Parent" control={<Radio color='inherit' />} label="Parent" /> */}
-                  </RadioGroup>
-
                   <TextField
                     id="name"
                     InputProps={{

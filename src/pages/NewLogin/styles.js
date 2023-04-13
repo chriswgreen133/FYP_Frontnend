@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/styles";
-// import Logo from './logo.jpg'
 import Logo from './two.jpg'
 export default makeStyles(theme => ({
   container: {
