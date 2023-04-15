@@ -128,7 +128,7 @@ export default function Home(props) {
       console.error(`not an image, the image file is a ${typeof (imageAsFile)}`)
     } else {
       console.log('start of upload')
-      const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+      const uploadTask = storage.ref(`/home/${imageAsFile.name}`).put(imageAsFile)
 
       //initiates the firebase side uploading 
       uploadTask.on('state_changed',
@@ -148,7 +148,7 @@ export default function Home(props) {
         }, () => {
           // gets the functions from storage refences the image storage in firebase by the children
           // gets the download url then sets the image from firebase as the value for the imgUrl key:
-          storage.ref('images').child(imageAsFile.name).getDownloadURL()
+          storage.ref('home').child(imageAsFile.name).getDownloadURL()
             .then(fireBaseUrl => {
               setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: fireBaseUrl }))
             })

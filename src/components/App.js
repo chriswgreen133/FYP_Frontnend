@@ -49,8 +49,8 @@ export default function App() {
   console.log(user)
 
   var { isAuthenticated } = useUserState();
-  const appID = "227288e14ee37703";
-  const region = "us";
+  const appID = "23705698cec0a72a";
+  const region = "eu";
   const appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
   CometChat.init(appID, appSetting).then(
     () => {
@@ -65,7 +65,7 @@ export default function App() {
 
   if (user != null) {
 
-    const authKey = "eec86b7681fa64295a4ce0b9c2a157885395785f";
+    const authKey = "b6890e4cb642e245405fe3317205997481daca78";
     const uid = user._id;
 
     CometChat.login(uid, authKey).then(

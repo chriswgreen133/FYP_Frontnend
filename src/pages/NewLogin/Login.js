@@ -53,13 +53,8 @@ function Login(props) {
   var [activeTabId, setActiveTabId] = useState(0);
   var [nameValue, setNameValue] = useState("");
   var [emailValue, setEmailValue] = useState("");
-  var [loginValue, setLoginValue] = useState("");
   var [phoneValue, setphoneValue] = useState();
   var [passwordValue, setPasswordValue] = useState("");
-  var [typeValue, setTypeValue] = useState('')
-  var [users, setUsers] = useState([])
-  var [userId, setUserId] = useState('')
-  var [allSchools, setAllSchools] = useState()
   let signupBool;
 
   const signUpSubmit = () => {
@@ -112,7 +107,7 @@ function Login(props) {
           response => {
             console.log(response.data.message)
 
-            let authKey = "eec86b7681fa64295a4ce0b9c2a157885395785f";
+            let authKey = "b6890e4cb642e245405fe3317205997481daca78";
             var uid = response.data._id;
             var name = response.data.username;
 
@@ -143,7 +138,7 @@ function Login(props) {
         AuthService.login(userLogin).then(
           (response) => {
             var UID = response._id
-            var authKey = "eec86b7681fa64295a4ce0b9c2a157885395785f";
+            var authKey = "b6890e4cb642e245405fe3317205997481daca78";
 
             CometChat.login(UID, authKey).then(
               user => {
@@ -245,7 +240,7 @@ function Login(props) {
                     }
 
                     disabled={
-                      emailValue.length === 0 || passwordValue.length === 0 || typeValue === undefined
+                      emailValue.length === 0 || passwordValue.length === 0
                     }
                     variant="contained"
                     size="large"
@@ -339,8 +334,7 @@ function Login(props) {
                         disabled={
                           emailValue.length === 0 ||
                           passwordValue.length === 0 ||
-                          nameValue.length === 0 ||
-                          typeValue === undefined
+                          nameValue.length === 0
                         }
                         size="large"
                         variant="contained"

@@ -105,8 +105,8 @@ var stream = 1
 export default function Live(props) {
 
   var { isAuthenticated } = useUserState();
-  const appID = "227288e14ee37703";
-  const region = "us";
+  const appID = "23705698cec0a72a";
+  const region = "eu";
   const appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
 
   CometChat.init(appID, appSetting).then(
