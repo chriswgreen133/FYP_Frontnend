@@ -108,14 +108,17 @@ export default function App() {
 
         <Route exact path="/admin" component={AdminAdding} />
         <Route exact path="/adminDashboard" component={AdminDashboard} />
-        <Route exact path="/" component={Landing} />
+        {/* <Route exact path="/" component={Landing} /> */}
         {/* <Route exact path="/" render={(props) => (
           <Landing {...props} fetchUrl1={url1} fetchUrl2={url2} />
         )} /> */}
         {/* <Route exact path="/landing" component={Landing} /> */}
-        <Route exact path="/login" render={(props) => (
+        <Route exact path="/" render={(props) => (
           <Login {...props} fetchUrl1={url1} fetchUrl2={url2} />
         )} />
+        {/* <Route exact path="/login" render={(props) => (
+          <Login {...props} fetchUrl1={url1} fetchUrl2={url2} />
+        )} /> */}
         <Route exact path="/live" component={Live} />
         <Route path="/app/dashboard" component={Dashboard} />
         <Route path="/app" component={Layout} />

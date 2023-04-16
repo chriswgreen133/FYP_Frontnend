@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { TextField, InputBase, Button, InputLabel } from "@material-ui/core";
-import pic1 from './school1.jpg'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CommentIcon from '@material-ui/icons/Comment';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';

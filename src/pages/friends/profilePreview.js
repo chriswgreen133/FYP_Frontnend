@@ -1,7 +1,6 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { Typography, TextField, InputBase, Button, DialogContent, Dialog, DialogTitle, DialogActions } from "@material-ui/core";
-import pic1 from '../home/school1.jpg'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CommentIcon from '@material-ui/icons/Comment';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';

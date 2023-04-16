@@ -11,9 +11,6 @@ import Loading from "../../components/Loading/loading"
 import Post from "./post"
 import Widget from "../../components/Widget/Widget";
 import { storage } from "../../Util/firebase"
-// import { useForm } from '../../shared/hooks/form-hook';
-// import { useHttpClient } from '../../shared/hooks/http-hook';
-//import { AuthContext } from '../context/auth-context';
 
 import axios from "../../Util/axios"
 import AuthService from "../../services/auth.service";
@@ -31,8 +28,6 @@ let post = {
 }
 
 const user = AuthService.getCurrentUser()
-console.log("Current User")
-console.log(user)
 
 export default function Home(props) {
 
@@ -43,32 +38,29 @@ export default function Home(props) {
   var [kee, setKee] = useState()
   let [reloadHome, setReloadHome] = useState(false)
 
-  const getPosts = useCallback(async (bool) => {
+  const getPosts = useCallback(async () => {
     async function fetchData() {
       let request;
       request = await axios.get("http://localhost:8080/dashboard/Home")
-      console.log("request")
+      
+      console.log("=========== getPosts =========")
 
       let finalArr = []
       request.data.filter((post) => {
-        console.log("Step 1")
         if (user != undefined) {
           if(user._id==post.userID){
             finalArr.push(post)
           }
           if (user.following != null || user.following != [] || user.following != undefined) {
-            console.log("Step 2")
             for (let i = 0; i < user.following.length; i++) {
               if (user.following[i].follow == true && user.following[i].userID == post.userID) {
-                console.log("Post found")
                 finalArr.push(post)
               }
-              
             }
           }
         }
-
       })
+
       console.log("Final Array")
       console.log(finalArr)
       //setAllPosts(request.data.reverse())
@@ -80,29 +72,22 @@ export default function Home(props) {
     setReloadHome(true)
   }, [])
 
-  //const auth = useContext(AuthContext);
   var classes = useStyles();
 
-  // var [useridValue, setUseridValue] = useState("");
-  // var [usernameValue, setUsernameValue] = useState("");
   var [textValue, setTextValue] = useState("");
   var [likesValue, setLikesValue] = useState([]);
-  //var [timeValue, setTimeValue] = useState("");
   var [commentValue, setCommentValue] = useState([]);
   var [imgBoolean, setImageBoolean] = useState()
 
   let postBool;
   let imgBool;
 
-  // const allInputs = { imgUrl: '' }
   const [imageAsFile, setImageAsFile] = useState('')
   const [imageAsUrl, setImageAsUrl] = useState({ imgUrl: '' })
   const [progress, setProgress] = useState(0)
 
   const handleImageAsFile = (e) => {
     const image = e.target.files[0]
-    // console.log("image")
-    // console.log(image)
 
     if (image !== undefined) {
       var imageExtension = image.name.split('.').pop();
@@ -120,7 +105,7 @@ export default function Home(props) {
   }
 
   const handleFireBaseUpload = e => {
-    //e.preventDefault()
+    e.preventDefault()
 
     // async magic goes here...
     if (imageAsFile === '') {
@@ -152,13 +137,12 @@ export default function Home(props) {
             .then(fireBaseUrl => {
               setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: fireBaseUrl }))
             })
-
         })
     }
 
   }
 
-  const postSubmit = (PostBool) => {
+  const postSubmit = () => {
 
     setLoadingPage(true)
 
