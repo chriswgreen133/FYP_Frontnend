@@ -50,7 +50,9 @@ export default function Post(props) {
         searchInput.current.focus()
     }
 
-    let handleSendComment = () => {
+    let handleSendComment = (e) => {
+        e.preventDefault()
+
         let finalComment = {
             userID: user._id,
             text: commentValue,
@@ -216,7 +218,7 @@ export default function Post(props) {
                     <div class={classes.commentbox}>
                         <InputBase className={classes.comment} inputRef={searchInput} onChange={e => setCommentValue(e.target.value)}
                             placeholder='Leave a comment'></InputBase>
-                        <Button onClick={() => handleSendComment()}> <SendIcon class={classes.commButton} /></Button>
+                        <Button onClick={(e) => handleSendComment(e)}> <SendIcon class={classes.commButton} /></Button>
                     </div>
                     <div>
                         {props.comments.map(function (item) {

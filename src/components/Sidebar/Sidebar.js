@@ -15,13 +15,12 @@ import {useLayoutState} from "../../context/LayoutContext";
 const structure = [
   
   {id: 0, label: "Statistics", link: "/app/charts", icon: <Stats /> },
-  {id: 1, label: "Map", link: "/app/map", icon: <Map />},
-  {id: 2, label: "Home", link: "/app/home", icon: <HomeIcon /> },
-  // {id: 3,label: "Live Stream",link: "/app/live",icon: <Stream />},
-  {id: 3,label: "Friends",link: "/app/friends",icon: <GroupIcon />},
-  {id: 4,label: "Inbox",link: "/app/inbox",icon: <ChatIcon />},
-  {id: 5,label: "Feedback",link: "/app/faq",icon: <UIElementsIcon />}
-  ,
+  {id: 1,label: "Audio",link: "/app/live",icon: <Stream />},
+  {id: 2, label: "Grammer Analysis", link: "/app/map", icon: <Map />},
+  {id: 3, label: "Home", link: "/app/home", icon: <HomeIcon /> },
+  {id: 4,label: "Friends",link: "/app/friends",icon: <GroupIcon />},
+  {id: 5,label: "Inbox",link: "/app/inbox",icon: <ChatIcon />},
+  {id: 6,label: "Feedback",link: "/app/faq",icon: <UIElementsIcon />}
 ];
 
 function Sidebar({ location }) {

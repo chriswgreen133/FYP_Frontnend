@@ -15,7 +15,8 @@ import { storage } from "../../Util/firebase"
 import axios from "../../Util/axios"
 import AuthService from "../../services/auth.service";
 import { v4 as uuidv4 } from 'uuid';
-import GetAllPosts from './getPosts'
+
+import Loader from '../../Util/loader/Loader';
 
 let post = {
   userID: "",
@@ -27,23 +28,20 @@ let post = {
   comments: {}
 }
 
-const user = AuthService.getCurrentUser()
+// const user = AuthService.getCurrentUser()
 
 export default function Home(props) {
 
-  var [isLoading, setIsLoading] = useState(false);
-  var [loadingPage, setLoadingPage] = useState(false);
-  var [onlyTextBool, setOnlyTextBool] = useState(false);
+  const user = AuthService.getCurrentUser()
+
+  const [isLoading, setIsLoading] = useState(false);
   var [allPosts, setAllPosts] = useState()
-  var [kee, setKee] = useState()
   let [reloadHome, setReloadHome] = useState(false)
 
   const getPosts = useCallback(async () => {
     async function fetchData() {
       let request;
       request = await axios.get("http://localhost:8080/dashboard/Home")
-      
-      console.log("=========== getPosts =========")
 
       let finalArr = []
       request.data.filter((post) => {
@@ -63,11 +61,9 @@ export default function Home(props) {
 
       console.log("Final Array")
       console.log(finalArr)
-      //setAllPosts(request.data.reverse())
       setAllPosts(finalArr.reverse())
       return request.data;
     }
-    //And here you call it
     fetchData()
     setReloadHome(true)
   }, [])
@@ -77,12 +73,10 @@ export default function Home(props) {
   var [textValue, setTextValue] = useState("");
   var [likesValue, setLikesValue] = useState([]);
   var [commentValue, setCommentValue] = useState([]);
-  var [imgBoolean, setImageBoolean] = useState()
-
-  let postBool;
-  let imgBool;
+  var [imgBoolean, setImageBoolean] = useState(false)
 
   const [imageAsFile, setImageAsFile] = useState('')
+  const [imageName, setImageName] = useState('')
   const [imageAsUrl, setImageAsUrl] = useState({ imgUrl: '' })
   const [progress, setProgress] = useState(0)
 
@@ -96,24 +90,35 @@ export default function Home(props) {
       let newImage = uuidv4() + '.' + imageExtension;
       console.log(newImage)
 
-      // setImageAsFile(imageFile => (image))//(newImage))
       setImageAsFile(image)
 
-      imgBool = true
+      setImageName(newImage)
+
       setImageBoolean(true)
+    } else {
+      setImageAsFile('')
+      setImageName('')
     }
   }
 
   const handleFireBaseUpload = e => {
     e.preventDefault()
 
+    setIsLoading(true);
+
     // async magic goes here...
-    if (imageAsFile === '') {
-      setOnlyTextBool(true)
+    if (imageAsFile === '' && textValue == "") {
+
+      setIsLoading(false);
+
       console.error(`not an image, the image file is a ${typeof (imageAsFile)}`)
+    } else if (imageAsFile === '') {
+      postSubmit()
+      setIsLoading(false);
     } else {
       console.log('start of upload')
-      const uploadTask = storage.ref(`/home/${imageAsFile.name}`).put(imageAsFile)
+      // const uploadTask = storage.ref(`/home/${imageAsFile.name}`).put(imageAsFile)
+      const uploadTask = storage.ref(`/home/${imageName}`).put(imageAsFile)
 
       //initiates the firebase side uploading 
       uploadTask.on('state_changed',
@@ -133,18 +138,22 @@ export default function Home(props) {
         }, () => {
           // gets the functions from storage refences the image storage in firebase by the children
           // gets the download url then sets the image from firebase as the value for the imgUrl key:
-          storage.ref('home').child(imageAsFile.name).getDownloadURL()
+
+          // storage.ref('home').child(imageAsFile.name).getDownloadURL()
+          storage.ref('home').child(imageName).getDownloadURL()
             .then(fireBaseUrl => {
               setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: fireBaseUrl }))
+
+              postSubmit(fireBaseUrl)
+
+              setIsLoading(false);
             })
         })
     }
 
   }
 
-  const postSubmit = () => {
-
-    setLoadingPage(true)
+    const postSubmit = (fireBaseUrl='') => {
 
     let current = new Date()
     let year = current.getFullYear().toString();
@@ -160,89 +169,51 @@ export default function Home(props) {
 
     let timee = finalDate.concat(" ", finalTime)
 
-    console.log("inside postSubmit")
-
     post.userID = user._id
     post.username = user.username
     post.text = textValue
-    post.image = imageAsUrl.imgUrl
+    // post.image = imageAsUrl.imgUrl
+    post.image = fireBaseUrl
     post.likes = likesValue
     post.time = timee
     post.comments = commentValue
 
-    console.log(postBool)
+    sendRequest()
 
-    console.log("Post")
+    setImageAsFile('')
+    setTextValue('')
+    setImageName('')
+  }
+
+  const sendRequest = useCallback(async () => {
+
+  console.log("inside useEffect")
+  async function fetchData() {
+    console.log('inside fetchdata')
+    let request;
+    console.log("inside post")
     console.log(post)
-    sendRequest(postBool)
+    request = await axios.post("http://localhost:8080" + props.fetchUrl, post)
+    console.log("request")
+    console.log(request)
+
+    setReloadHome(true)
+    return request;
   }
 
-  //Snippet of code which runs based on a specific condition 
-  const sendRequest = useCallback(async (postBool) => {
+  fetchData()
+})
 
-    console.log("inside useEffect")
-    async function fetchData() {
-      //await means wait for the requests come back
-      console.log('inside fetchdata')
-      let request;
-      console.log(postBool)
-      if (postBool === true) {
-
-        console.log("inside post")
-        console.log(post)
-        request = await axios.post("http://localhost:8080" + props.fetchUrl, post)
-        console.log("request")
-        console.log(request)
-
-        setLoadingPage(false)
-        setReloadHome(true)
-        return request;
-      } else {
-        console.log("post is false")
-      }
-    }
-    //And here you call it
-    fetchData()
-    postBool = false;
-
-  }, [])
-
-  if (imgBoolean === true) {
-    console.log("inside if")
-    if (imageAsUrl.imgUrl === '') {
-      console.log("empty img")
-      console.log(imageAsUrl.imgUrl)
-
-    } else {
-      console.log("inside else img")
-      postBool = true
-      postSubmit(postBool)
-      setImageBoolean(false)
-    }
-  } else {
-    if (onlyTextBool == true) {
-      postBool = true
-      postSubmit(postBool)
-    }
-    console.log("bool:")
-    console.log(imgBoolean)
-  }
-
-  console.log("Kee")
-  console.log(kee)
-
-  let displayPosts //= () => { let displayPostsVar
+  let displayPosts
 
   try {
     if (allPosts != undefined) {
       console.log("inside displayPost")
-      // {return <GetAllPosts allPosts= {allPosts}/>}
       displayPosts = allPosts.map((i) => {
         return <Post key={i._id} id={i._id}
           username={i.username} userID={i.userID} time={i.time} text={i.text} image={i.image} comments={i.comments} likes={i.likes} totalLikes={i.totalLikes}//onSelect={this.onSelect} 
         />
       })
-      //setIsLoading(false)
     } else {
       console.log("nothing")
     }
@@ -251,55 +222,44 @@ export default function Home(props) {
     console.log(err)
   }
 
-  //}
-
   useEffect(() => {
     getPosts()
-    //setIsLoading(true)
     setReloadHome(false)
-    //getItems().then(data => setItems(data));
   }, [reloadHome]);
 
   return (
     <>
       <Grid container spacing={4}>
-        {
-          loadingPage ? <Loading /> :
-            <Grid item md={8}>
-              <progress value={progress} max="100" />
-              <Widget title="What's on your mind?" disableWidgetMenu>
-                <form onSubmit={handleFireBaseUpload}>
-                  <TextField className={classes.textfield} value={textValue}
-                    onChange={e => setTextValue(e.target.value)} placeholder='Post here...'></TextField>
-
-                  <div className={classes.postbottom}>
-                    <div className={classes.postbottomL} >
-                      {/* <PhotoIcon fontSize='large' className='icon' />
-                <text>Upload photo</text> */}
-                      <input
-                        type="file"
-                        // multiple
-                        onChange={handleImageAsFile}
-                      />
-                    </div>
-                    <button type='submit' className={classes.postButton}>Post</button>
-                  </div>
-                </form>
-              </Widget>
-              {/* <div><img src={imageAsUrl.imgUrl} alt="image tag" /></div> */}
-            </Grid>
-        }
-        {/* <img src={imageAsUrl.imgUrl} alt="image tag" /> */}
-
+        <Grid item md={8}>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <div>
+          <Widget title="What's on your mind?" disableWidgetMenu>
+            <form onSubmit={handleFireBaseUpload}>
+              <TextField className={classes.textfield} value={textValue}
+                onChange={e => setTextValue(e.target.value)} placeholder='Post here...'></TextField>
+              <div className={classes.postbottom}>
+                <div className={classes.postbottomL} >
+                  <input
+                    type="file"
+                    // multiple
+                    onChange={handleImageAsFile}
+                  />
+                </div>
+                <button type='submit' className={classes.postButton}>Post</button>
+              </div>
+            </form>
+          </Widget>
+            </div>
+          )}
+        </Grid>
         <div style={{ width: '95%', marginLeft: '15px' }}>
           {
-            allPosts == undefined ? <div>Loading...</div> : displayPosts
+            allPosts == undefined ? <Loading /> : displayPosts
           }
         </div>
-
       </Grid>
-
-
     </>
   );
 }

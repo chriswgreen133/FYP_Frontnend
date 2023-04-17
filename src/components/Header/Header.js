@@ -127,7 +127,7 @@ export default function Header(props) {
           />
         </div>
         */}
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-haspopup="true"
           aria-controls="mail-menu"
@@ -143,7 +143,7 @@ export default function Header(props) {
           >
             <NotificationsIcon classes={{ root: classes.headerIcon }} />
           </Badge>
-        </IconButton>
+        </IconButton> */}
         {/*
         <IconButton
           color="inherit"
