@@ -15,20 +15,16 @@ const UploadAudio = () => {
     const formData = new FormData();
     formData.append('audio', file);
 
-    axios.get("http://localhost:8080/grammer/transcribe", {'audio': formData})
-    // .then(response => response.text())
-    .then(response => console.log(response))
+    // axios.get("http://localhost:8080/grammer/transcribe", {'audio': formData})
+    axios.post("http://localhost:8080/grammer/transcribe", formData)
+    .then(response => response.data)
+    // .then(response => console.log(response))
     .then(data => setResponse(data))
+    // .then(data => console.log(data))
     .catch(error => console.log(error));
-
-    // fetch('/api/upload-audio', {
-    //   method: 'POST',
-    //   body: formData,
-    // })
-    //   .then(response => response.text())
-    //   .then(data => setResponse(data))
-    //   .catch(error => console.log(error));
   };
+
+  console.log(`response => ${response}`)
 
   return (
     <div className="upload-audio-container">
@@ -38,8 +34,9 @@ const UploadAudio = () => {
         <button type="submit" disabled={!file}>Upload</button>
       </form>
       <div className="response-container">
-        <h2>Server Response:</h2>
-        <textarea value={response} />
+        <h2>Transcription:</h2>
+        {/* <textarea value={response} /> */}
+        <textarea value={response} placeholder='Upload a file to Transcribe'>{response}</textarea>
       </div>
     </div>
   );

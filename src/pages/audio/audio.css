@@ -47,7 +47,8 @@
 .audio-recorder__list-item button {
   font-size: 14px;
   padding: 5px 10px;
-  background-color: #fff;
+  background-color: #68a6e7;
+  /* background-color: #fff; */
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
