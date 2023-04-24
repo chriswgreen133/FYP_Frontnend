@@ -322,7 +322,7 @@ function LiveStream(props) {
                         />
                       </Widget>
                     </div>
-                    <Button size="large" variant="contained" color="seconadary"
+                    <Button size="large" variant="contained" color="secondary"
                       className={classes.button2}
                       disabled={Dvalue.length === 0 || Tvalue.length === 0 || Tvalue1.length === 0}
                       onClick={() => { handleAddLiveStream() }}> Send Request</Button>
@@ -358,11 +358,11 @@ function LiveStream(props) {
               </React.Fragment>
             )}
 
-            <Button size="large" variant="contained" color="seconadary"
+            <Button size="large" variant="contained" color="secondary"
               className={classes.button}
               onClick={() => { props.history.goBack() }}
             > Cancel</Button>
-            <Button size="large" variant="contained" color="seconadary"
+            <Button size="large" variant="contained" color="secondary"
               className={classes.button}
             > Save</Button>
 

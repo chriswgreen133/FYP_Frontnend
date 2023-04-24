@@ -351,7 +351,7 @@ export default function Charts(props) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="schoolName" />
 
-          <YAxis label={{ value: 'FEE(PKR)', angle: -90, position: 'insideLeft' }} />/>
+          <YAxis label={{ value: 'FEE(PKR)', angle: -90, position: 'insideLeft' }} />
         <Tooltip />
           <Legend />
           <Bar dataKey="primary" fill="#8884d8" />

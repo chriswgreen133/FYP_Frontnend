@@ -145,7 +145,7 @@ function Feedback(props) {
       let request;
       console.log("ReviewData")
       console.log(reviewData)
-      request = await axios.post("http://localhost:8080/mainReview/Speech WizardReviews", reviewData)
+      request = await axios.post("http://localhost:8080/mainReview/appReview", reviewData)
       console.log("request")
       console.log(request)
       alert("Review Added Successfully")
@@ -158,7 +158,7 @@ function Feedback(props) {
   const getReviews = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/mainReview/Speech WizardReviews")
+      request = await axios.get("http://localhost:8080/mainReview/appReview")
       console.log("request")
       console.log(request)
       setAllReviews(request.data)
@@ -197,7 +197,7 @@ function Feedback(props) {
               classes={{ indicator: classes.indicator, root: classes.tabs }}
               centered
             >
-              <Tab label="School Feedback" classes={{ root: classes.tab }} />
+              <Tab label="App Feedback" classes={{ root: classes.tab }} />
               <Tab label="Rate Speech Wizard" classes={{ root: classes.tab }} />
             </Tabs>
             {activeTabId === 0 && (
@@ -214,20 +214,20 @@ function Feedback(props) {
             )}
             {activeTabId === 1 && (
               <React.Fragment>
-                <Widget style={{ height: '55vh' }} title='Rate our School' disableWidgetMenu>
+                <Widget style={{ height: '55vh' }} title='Rate our App' disableWidgetMenu>
                   <div className={classes.leavecomment}>
                     <StarRatings starDimension="20px" rating={newRating}
                       starSpacing="3px" changeRating={(rating) => { setNewRating(rating) }} starRatedColor="#D10B0B" />
                     <textarea className={classes.para} id="about" placeholder="Leave a review"
                       onChange={e => setNewReview(e.target.value)} fullWidth />
                     {/* <Button style={{ float: "right" }} onClick={() => handleSend()}
-                      size="large" variant="contained" color="seconadary"> Submit</Button> */}
+                      size="large" variant="contained" color="secondary"> Submit</Button> */}
                   </div>
-                  <Button size="large" variant="contained" color="seconadary"
+                  <Button size="large" variant="contained" color="secondary" 
                     className={classes.button}
                     onClick={() => { props.history.goBack() }}
                   > Cancel</Button>
-                  <Button size="large" variant="contained" color="seconadary"
+                  <Button size="large" variant="contained" color="secondary"
                     className={classes.button} onClick={() => handleSend()}
                   > Submit</Button>
                 </Widget>

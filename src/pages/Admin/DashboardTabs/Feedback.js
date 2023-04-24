@@ -195,7 +195,7 @@ function Feedback(props) {
     console.log("inside displayReviews")
     displayReviews = allReviews.map((item) => {
       return (
-        <Grid item xs={4} class={classes.top}>
+        <Grid item xs={4} className={classes.top}>
           <Widget disableWidgetMenu>
             <AccountCircle style={{ fontSize: '40' }} />
             <div className={classes.nameanddate}>
@@ -217,9 +217,9 @@ function Feedback(props) {
                 )
               })}
             </div>
-            <div class={classes.commentbox}>
+            <div className={classes.commentbox}>
               <InputBase className={classes.reply} onChange={e => setReplyValue(e.target.value)} placeholder='Reply'></InputBase>
-              <Send class={classes.commButton} onClick={() => { handleReply(item._id) }} />
+              <Send className={classes.commButton} onClick={() => { handleReply(item._id) }} />
             </div>
           </Widget>
         </Grid>
@@ -267,11 +267,11 @@ function Feedback(props) {
               </React.Fragment>
             )} */}
             <br />
-            <Button size="large" variant="contained" color="seconadary"
+            <Button size="large" variant="contained" color="secondary"
               className={classes.button}
               onClick={() => { props.history.goBack() }}
             > Cancel</Button>
-            <Button size="large" variant="contained" color="seconadary"
+            <Button size="large" variant="contained" color="secondary"
               className={classes.button}
             > Save</Button>
 

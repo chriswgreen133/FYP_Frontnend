@@ -365,11 +365,11 @@ function EditInfo(props) {
                 </div>
               </React.Fragment>
             )}
-            <Button size="large" variant="contained" color="seconadary"
+            <Button size="large" variant="contained" color="secondary"
               className={classes.button}
               onClick={() => { props.history.goBack() }}
             > Cancel</Button>
-            <Button size="large" variant="contained" color="seconadary"
+            <Button size="large" variant="contained" color="secondary"
               className={classes.button} onClick={() => updateSchoolObject()}
             > Update</Button>
           </Widget>

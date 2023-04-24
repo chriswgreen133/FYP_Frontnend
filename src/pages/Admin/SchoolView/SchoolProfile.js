@@ -300,7 +300,7 @@ export default function SchoolProfile(props) {
                         </text>
                         <br />
                         {
-                            teacherButton ? <Button size="large" variant="contained" color="seconadary" onClick={() => joinSchool()}>Join School</Button> : <div></div>
+                            teacherButton ? <Button size="large" variant="contained" color="secondary" onClick={() => joinSchool()}>Join School</Button> : <div></div>
                         }
                     </div>
                     <div className={classes.video}>
@@ -344,7 +344,7 @@ export default function SchoolProfile(props) {
                                         onChange={e => setNewReview(e.target.value)} fullWidth />
                                     <Button style={{ float: "right" }} onClick={() => handleSend()
                                     }
-                                        size="large" variant="contained" color="seconadary"
+                                        size="large" variant="contained" color="secondary"
                                         disabled={
                                             reviewButton || newReview.length === 0 || newReview === '' || newReview === undefined
                                         }> Submit</Button>

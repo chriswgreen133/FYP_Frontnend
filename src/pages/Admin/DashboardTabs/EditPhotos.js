@@ -454,11 +454,11 @@ function EditInfo(props) {
                             </React.Fragment>
                         )}
                         <br /><br />
-                        <Button size="large" variant="contained" color="seconadary"
+                        <Button size="large" variant="contained" color="secondary"
                             className={classes.button}
                             onClick={() => { props.history.goBack() }}
                         > Cancel</Button>
-                        <Button size="large" variant="contained" color="seconadary"
+                        <Button size="large" variant="contained" color="secondary"
                             className={classes.button}
                             onClick={() => { imageSubmit() }}
                         > Save</Button>

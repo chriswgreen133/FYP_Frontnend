@@ -22,7 +22,9 @@ import Live from "../../pages/Live/live";
 import Faq from '../../pages/faq/Feedback'
 import Friends from '../../pages/friends/friends'
 import Chat from '../../pages/Chat/chat'
-import LiveAvailable from "../../pages/Live/LiveAvailable";
+// import LiveAvailable from "../../pages/Live/LiveAvailable";
+import LiveAvailable from "../../pages/audio/audio";
+import GrammerAnalysis from "../../pages/grammer/grammer";
 
 
 function Layout(props) {
@@ -46,14 +48,15 @@ function Layout(props) {
             {/* <Route path="/app/schoolDetails" render={(props) => (
               <SchoolDetails {...props}  />
             )} /> */}
-            {/* <Route path="/app/live" component={Live} /> */}
+            {/* <Route path="/app/audio" component={Live} /> */}
             <Route path="/app/home" component={Home} />
-            <Route path="/app/live" component={LiveAvailable} />
+            <Route path="/app/audio" component={LiveAvailable} />
             <Route path="/app/faq" component={Faq} />
             <Route path="/app/inbox" component={Chat} />
             <Route path="/app/friends" component={Friends} />
             <Route path="/app/typography" component={Dashboard} />
-            <Route path="/app/map" component={Maps} />
+            <Route path="/app/grammer" component={GrammerAnalysis} />
+            {/* <Route path="/app/grammer" component={Maps} /> */}
             <Route path="/app/notifications" component={Notifications} />
             <Route
               exact

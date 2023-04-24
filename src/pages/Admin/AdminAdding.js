@@ -473,7 +473,8 @@ function GetStepContent(stepIndex, props) {
                     </div>
                     <div className={classes.Checks}>
                         <text style={{ fontWeight: 'bold' }}>Education type: </text>
-                        <RadioGroup onChange={(e) => { setEducationType(e.target.value) }} style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationtype" name="educationtype  " value={educationType} onChange={handleChange3}>
+                        {/* <RadioGroup onChange={(e) => { setEducationType(e.target.value) }} style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationtype" name="educationtype  " value={educationType} onChange={handleChange3}> */}
+                        <RadioGroup  style={{ dispaly: 'flex', flexDirection: 'row' }} aria-label="educationtype" name="educationtype  " value={educationType} onChange={handleChange3}>
                             <FormControlLabel value="Arts" control={<Radio />} label="Arts" />
                             <FormControlLabel value="Science" control={<Radio />} label="Science" />
                         </RadioGroup>
