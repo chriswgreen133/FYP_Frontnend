@@ -12,7 +12,8 @@ const AudioRecorder = () => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
       recorder = new RecordRTC(stream, {
         type: 'audio',
-        mimeType: 'audio/webm',
+        mimeType: 'audio/wav',
+        // mimeType: 'audio/webm',
       });
       recorder.startRecording();
       setRecording(true);
@@ -35,7 +36,7 @@ const AudioRecorder = () => {
     document.body.appendChild(a);
     a.style = 'display: none';
     a.href = url;
-    a.download = 'recording.webm';
+    a.download = 'recording.wav';
     a.click();
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
