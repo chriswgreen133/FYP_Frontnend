@@ -14,7 +14,7 @@ import {useLayoutState} from "../../context/LayoutContext";
 
 const structure = [
   
-  {id: 0, label: "Statistics", link: "/app/charts", icon: <Stats /> },
+  // {id: 0, label: "Statistics", link: "/app/charts", icon: <Stats /> },
   {id: 1,label: "Audio",link: "/app/audio",icon: <Stream />},
   {id: 2, label: "Grammer Analysis", link: "/app/grammer", icon: <Map />},
   {id: 3, label: "Home", link: "/app/home", icon: <HomeIcon /> },

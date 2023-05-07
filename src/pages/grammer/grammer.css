@@ -5,11 +5,35 @@
     margin-top: 50px;
   }
   
+  .upload-audio-container.loading:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .upload-audio-container.loading .loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+  }
+
   .upload-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+  }
+
+  .my-textarea {
+    width: 100%;
+    height: 200px;
   }
   
   label {
@@ -38,12 +62,12 @@
   
   .response-container {
     width: 80%;
-    max-width: 600px;
+    /* max-width: 600px; */
   }
 
   .grammer-response-container {
     width: 80%;
-    max-width: 600px;
+    /* max-width: 600px; */
   }
   
   h2 {

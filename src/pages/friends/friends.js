@@ -17,7 +17,6 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import useStyles from "./styles";
 import ProfilePreview from './profilePreview'
 import axios from "../../Util/axios"
-import * as geolib from 'geolib';
 import AuthService from "../../services/auth.service";
 
 let newData = {

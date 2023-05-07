@@ -12,13 +12,7 @@ import Sidebar from "../Sidebar";
 // pages
 import Dashboard from "../../pages/dashboard";
 import Home from "../../pages/home/Home";
-import SchoolDetails from "../../pages/Admin/SchoolView/School"
-import Notifications from "../../pages/notifications";
-import Maps from "../../pages/maps";
-import Charts from "../../pages/charts";
-import Signin from '../../pages/profiling/signin/signinNew'
 import Footer from '../Footer/footer'
-import Live from "../../pages/Live/live";
 import Faq from '../../pages/faq/Feedback'
 import Friends from '../../pages/friends/friends'
 import Chat from '../../pages/Chat/chat'
@@ -45,10 +39,6 @@ function Layout(props) {
             <Route path="/app/home" render={(props) => (
               <Home {...props} fetchUrl={url1} />
             )} />
-            {/* <Route path="/app/schoolDetails" render={(props) => (
-              <SchoolDetails {...props}  />
-            )} /> */}
-            {/* <Route path="/app/audio" component={Live} /> */}
             <Route path="/app/home" component={Home} />
             <Route path="/app/audio" component={LiveAvailable} />
             <Route path="/app/faq" component={Faq} />
@@ -56,15 +46,6 @@ function Layout(props) {
             <Route path="/app/friends" component={Friends} />
             <Route path="/app/typography" component={Dashboard} />
             <Route path="/app/grammer" component={GrammerAnalysis} />
-            {/* <Route path="/app/grammer" component={Maps} /> */}
-            <Route path="/app/notifications" component={Notifications} />
-            <Route
-              exact
-              path="/app/ui"
-              render={() => <Redirect to="/app/ui/icons" />}
-            />
-            <Route path="/app/ui/maps" component={Charts} />
-            <Route path="/app/charts" component={Charts} />
           </Switch>
           <Footer />
         </div>

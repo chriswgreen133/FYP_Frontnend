@@ -60,6 +60,8 @@ export default function Home(props) {
   }
 
   let handleChat = () => {
+    console.log('======== selectedUser =========')
+    console.log(selectedUser)
     var UID = selectedUser.userID;
     // CometChat.getUser(UID).then(
     //   user => {

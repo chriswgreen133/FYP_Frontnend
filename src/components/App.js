@@ -8,27 +8,13 @@ import Layout from "./Layout";
 import Error from "../pages/error";
 //import Login from "../pages/login/Login";
 import Login from '../pages/NewLogin/Login'
-import Signin from '../pages/profiling/signin/signinNew'
-import Landing from './../pages/landing/Landing'
 import userProfile from '../pages/UserProfile/UserProfile'
 
 // context
 import { useUserState } from "../context/UserContext";
-import Home from "../pages/home/Home";
 import Dashboard from "../pages/dashboard/Dashboard";
-import AdminAdding from '../pages/Admin/AdminAdding'
-import AdminDashboard from '../pages/Admin/AdminDashboard'
-import SchoolDetails from "../pages/Admin/SchoolView/School"
 import ProfilePage from "../pages/profilePage/profilePage"
-//import checkboxUI from "../pages/Admin/checkbox"
-import Live from '../pages/Admin/DashboardTabs/LiveStream'
-import EditInfo from '../pages/Admin/DashboardTabs/Edit info'
-import EditPhotos from '../pages/Admin/DashboardTabs/EditPhotos'
-import EditFee from '../pages/Admin/DashboardTabs/EditFee'
-import Faculty from '../pages/Admin/DashboardTabs/Faculty'
-import Feedback from '../pages/Admin/DashboardTabs/Feedback'
 import uploadImage from '../pages/uploadImage/upload'
-import LiveStream from '../pages/Live/live'
 
 import AuthService from "../services/auth.service"
 
@@ -37,7 +23,6 @@ import SuperAdmin from './LayoutSuperAdmin'
 import SuperAdminDashboard from '../pages/SuperAdmin/Dashboard'
 
 import Faq from '../pages/faq/Feedback'
-
 
 export default function App() {
   // global
@@ -82,32 +67,10 @@ export default function App() {
   return (
     <HashRouter>
       <Switch>
-        {/* <Route exact path="/" component={Landing} /> */}
-        {/* <Route exact path="/" render={() => <Redirect to="/app/home" />} /> */}
-        {/* <Route exact path="/app" render={() => <Redirect to="/app/home" />}/> */}
-
-        <Route path="/schoolDetails" render={(props) => (
-          <SchoolDetails {...props} />
-        )} />
-
         <Route path="/profilePage" render={(props) => (
           <ProfilePage {...props} />
         )} />
-
-        <Route exact path="/general" component={EditInfo} />
-        <Route exact path="/photos" component={EditPhotos} />
-        <Route exact path="/fee" component={EditFee} />
-        <Route exact path="/acad" component={EditInfo} />
-        <Route exact path="/requests" component={Faculty} />
-        <Route exact path="/reviews" component={Feedback} />
-        {/* <Route exact path="/app/liveStream"  component={LiveStream} /> */}
-        <Route path="/app/liveStream" render={(props) => (
-          <LiveStream {...props} />
-        )} />
         <Route exact path="/uploadImage" component={uploadImage} />
-
-        <Route exact path="/admin" component={AdminAdding} />
-        <Route exact path="/adminDashboard" component={AdminDashboard} />
         {/* <Route exact path="/" component={Landing} /> */}
         {/* <Route exact path="/" render={(props) => (
           <Landing {...props} fetchUrl1={url1} fetchUrl2={url2} />
@@ -119,7 +82,6 @@ export default function App() {
         {/* <Route exact path="/login" render={(props) => (
           <Login {...props} fetchUrl1={url1} fetchUrl2={url2} />
         )} /> */}
-        <Route exact path="/live" component={Live} />
         <Route path="/app/dashboard" component={Dashboard} />
         <Route path="/app" component={Layout} />
         <Route path="/userProfile" component={userProfile} />

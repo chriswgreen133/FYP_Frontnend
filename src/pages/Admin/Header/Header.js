@@ -7,8 +7,6 @@ import Logo from './logo.png';
 import useStyles from "./styles";
 // components
 import { Badge, Typography, Button } from "../../../components/Wrappers";
-import Notification from "../../notifications/Notifications";
-import UserAvatar from "../../../components/UserAvatar"; 
 // context
 import {useLayoutState,useLayoutDispatch,toggleSidebar,} from "../../../context/LayoutContext";
 import { useUserDispatch, signOut, Shome } from "../../../context/UserContext";

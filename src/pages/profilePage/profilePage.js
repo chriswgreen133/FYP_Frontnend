@@ -17,7 +17,6 @@ import { CometChat } from "@cometchat-pro/chat"
 import useStyles from "./styles";
 
 // components
-import DP from './default profile pic.jpg'
 import PageTitle from "../../components/PageTitle/PageTitle";
 import PhotoIcon from '@material-ui/icons/Photo';
 import Widget from "../../components/Widget/Widget";

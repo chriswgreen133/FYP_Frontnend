@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import axios from "../../Util/axios"
 import { TextArea } from '@thumbtack/thumbprint-react';
+import { BeatLoader } from 'react-spinners';
+import { css } from '@emotion/core';
 import './grammer.css';
+
+const override = css`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const UploadAudio = () => {
   const [file, setFile] = useState(null);
@@ -9,6 +18,7 @@ const UploadAudio = () => {
   const [grammerResponse, setGrammerResponse] = useState('');
   const [transcription, setTranscription] = useState('');
   const [grammerTranscription, setGrammerTranscription] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = e => {
     setFile(e.target.files[0]);
@@ -19,6 +29,8 @@ const UploadAudio = () => {
     const formData = new FormData();
     formData.append('audioFile', file);
 
+    setLoading(true)
+
     axios.post("http://localhost:8080/grammer/transcribe", formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -26,7 +38,10 @@ const UploadAudio = () => {
     })
     .then(response => response.data)
     // .then(response => console.log(response))
-    .then(data => setResponse(data))
+    .then((data) => {
+      setResponse(data);
+      setLoading(false);
+    })
     // .then(data => console.log(data))
     .catch(error => console.log(error));
   };
@@ -39,10 +54,15 @@ const UploadAudio = () => {
     console.log('======== transcription =========')
     console.log(response)
 
+    setLoading(true)
+
     axios.post("http://localhost:8080/grammer/analysis", {response})
     .then(response => response.data)
     // .then(response => console.log(response))
-    .then(data => setGrammerResponse(data))
+    .then(data => {
+      setGrammerResponse(data);
+      setLoading(false);
+    })
     // .then(data => console.log(data))
     .catch(error => console.log(error));
   };
@@ -50,7 +70,15 @@ const UploadAudio = () => {
   // console.log(`response => ${response}`)
 
   return (
-    <div className="upload-audio-container">
+    // <div className="upload-audio-container">
+    <div className={`upload-audio-container ${loading ? "loading" : ""}`}>
+      <BeatLoader
+          className="loading-spinner"
+          css={override}
+          size={20}
+          color={"#123abc"}
+          loading={loading}
+      />
       <form onSubmit={handleSubmit} className="upload-form">
         <label htmlFor="audio-file">Select audio file:</label>
         <input type="file" id="audio-file" onChange={handleFileChange} />
@@ -60,11 +88,18 @@ const UploadAudio = () => {
         <h2>Transcription:</h2>
         {/* <textarea value={response} /> */}
         {/* <textarea value={response} placeholder='Upload a file to Transcribe'>{response}</textarea> */}
-        <TextArea
+        {/* <TextArea
             value={response}
             isReadOnly={false}
             placeholder="Upload a file to Transcribe"
             onChange={v => setTranscription(v)}
+        /> */}
+        <textarea
+          value={response}
+          readOnly={false}
+          placeholder="Upload a file to Transcribe"
+          onChange={v => setTranscription(v)}
+          style={{ width: "100%", height: "200px"}}
         />
       </div>
       <div className='grammer_btn'>
@@ -72,11 +107,18 @@ const UploadAudio = () => {
       </div>
       <div className="grammer-response-container">
         <h2>Grammer Analysis:</h2>
-        <TextArea
+        {/* <TextArea
             value={grammerResponse}
             isReadOnly={false}
             placeholder="Waiting for your Transcription..."
             onChange={v => setGrammerTranscription(v)}
+        /> */}
+        <textarea
+          value={grammerResponse}
+          isReadOnly={false}
+          placeholder="Waiting for your Transcription..."
+          onChange={v => setGrammerTranscription(v)}
+          style={{ width: "100%", height: "400px"}}
         />
       </div>
     </div>
