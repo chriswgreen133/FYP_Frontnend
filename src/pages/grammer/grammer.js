@@ -106,7 +106,7 @@ const UploadAudio = () => {
           <button type="button" disabled={!response} onClick={handleSubmitGrammer}>Grammer Analysis</button>
       </div>
       <div className="grammer-response-container">
-        <h2>Grammer Analysis:</h2>
+        <h2>Grammar Analysis:</h2>
         {/* <TextArea
             value={grammerResponse}
             isReadOnly={false}

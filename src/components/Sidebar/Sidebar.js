@@ -16,7 +16,7 @@ const structure = [
   
   // {id: 0, label: "Statistics", link: "/app/charts", icon: <Stats /> },
   {id: 1,label: "Audio",link: "/app/audio",icon: <Stream />},
-  {id: 2, label: "Grammer Analysis", link: "/app/grammer", icon: <Map />},
+  {id: 2, label: "Grammar Analysis", link: "/app/grammer", icon: <Map />},
   {id: 3, label: "Home", link: "/app/home", icon: <HomeIcon /> },
   {id: 4,label: "Friends",link: "/app/friends",icon: <GroupIcon />},
   {id: 5,label: "Inbox",link: "/app/inbox",icon: <ChatIcon />},
