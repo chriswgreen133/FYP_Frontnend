@@ -41,7 +41,7 @@ export default function Home(props) {
   const getPosts = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/dashboard/Home")
+      request = await axios.get("http://16.170.194.209:8080/dashboard/Home")
 
       let finalArr = []
       request.data.filter((post) => {
@@ -193,7 +193,7 @@ export default function Home(props) {
     let request;
     console.log("inside post")
     console.log(post)
-    request = await axios.post("http://localhost:8080" + props.fetchUrl, post)
+    request = await axios.post("http://16.170.194.209:8080" + props.fetchUrl, post)
     console.log("request")
     console.log(request)
 

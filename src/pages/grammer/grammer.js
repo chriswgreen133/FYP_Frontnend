@@ -31,7 +31,7 @@ const UploadAudio = () => {
 
     setLoading(true)
 
-    axios.post("http://localhost:8080/grammer/transcribe", formData, {
+    axios.post("http://16.170.194.209:8080/grammer/transcribe", formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -56,7 +56,7 @@ const UploadAudio = () => {
 
     setLoading(true)
 
-    axios.post("http://localhost:8080/grammer/analysis", {response})
+    axios.post("http://16.170.194.209:8080/grammer/analysis", {response})
     .then(response => response.data)
     // .then(response => console.log(response))
     .then(data => {

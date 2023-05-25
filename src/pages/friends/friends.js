@@ -54,30 +54,12 @@ export default function Maps(props) {
     postSearch()
   }
 
-  // const getAllUsers = useCallback(async (bool) => {
-  //   async function fetchData() {
-  //     let request;
-  //     console.log("inside get all schools")
-  //     request = await axios.get("http://localhost:8080/searchSchool/search/")
-  //     console.log("request")
-  //     setAllSchools(request.data)
-  //     return request.data;
-  //   }
-  //   //And here you call it
-  //   fetchData()
-  // }, [])
-
-  // useEffect(() => {
-  //   getAllUsers()
-  //   //getItems().then(data => setItems(data));
-  // }, []);
-
   const postSearch = useCallback(async () => {
     async function fetchData() {
       let request;
       console.log("NewData")
       console.log(newData)
-      request = await axios.post("http://localhost:8080/user_management/searchUser/" + newData.search)
+      request = await axios.post("http://16.170.194.209:8080/user_management/searchUser/" + newData.search)
       console.log("request")
       console.log(request)
       

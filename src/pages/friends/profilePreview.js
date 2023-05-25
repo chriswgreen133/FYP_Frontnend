@@ -80,7 +80,7 @@ export default function Home(props) {
       console.log("Final Obj")
       console.log(finalObj)
       let request;
-      request = await axios.patch("http://localhost:8080/chat/chatPost/", finalObj)
+      request = await axios.patch("http://16.170.194.209:8080/chat/chatPost/", finalObj)
       //setReloadButton(true)
       return request.data;
     }
@@ -93,7 +93,7 @@ export default function Home(props) {
       console.log("Final Obj")
       console.log(finalObj)
       let request;
-      request = await axios.patch("http://localhost:8080/user_management/userProfile/updateFollowing/" + user._id, finalObj)
+      request = await axios.patch("http://16.170.194.209:8080/user_management/userProfile/updateFollowing/" + user._id, finalObj)
       //console.log("request")
       setReloadButton(true)
       return request.data;
@@ -106,7 +106,7 @@ export default function Home(props) {
     async function fetchData() {
       let request;
       console.log("Inside Get User")
-      request = await axios.get("http://localhost:8080/user_management/userProfile/" + selectedUser.userID)
+      request = await axios.get("http://16.170.194.209:8080/user_management/userProfile/" + selectedUser.userID)
       //console.log("request")
       let userDataa = request.data
       console.log("User Data")
@@ -138,7 +138,7 @@ export default function Home(props) {
     async function fetchData() {
       let request;
       console.log("Inside Get User")
-      request = await axios.get("http://localhost:8080/user_management/userProfile/" + user._id)
+      request = await axios.get("http://16.170.194.209:8080/user_management/userProfile/" + user._id)
       //console.log("request")
       //let userDataa = request.data
       console.log("Current User Data")
@@ -170,7 +170,7 @@ export default function Home(props) {
   const getPosts = useCallback(async (bool) => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/dashboard/Home")
+      request = await axios.get("http://16.170.194.209:8080/dashboard/Home")
       //console.log("request")
       let finalPosts = []
       let allPosts = request.data.reverse()

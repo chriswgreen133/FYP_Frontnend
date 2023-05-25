@@ -80,7 +80,7 @@ function LiveStream(props) {
   const getLiveStreams = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/videoStreaming/getStreams")
+      request = await axios.get("http://16.170.194.209:8080/videoStreaming/getStreams")
       console.log("request")
       console.log(request.data)
       setAllLiveStreams(request.data.reverse())
@@ -106,7 +106,7 @@ function LiveStream(props) {
       console.log(stat)
       console.log(id)
       //console.log(status)
-      request = await axios.patch("http://localhost:8080/videoStreaming/updateStream/" + id, stat)
+      request = await axios.patch("http://16.170.194.209:8080/videoStreaming/updateStream/" + id, stat)
       console.log("request")
       console.log(request)
       //setReloadPost(true)

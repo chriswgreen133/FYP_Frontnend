@@ -71,7 +71,7 @@ export default function Reviews() {
   const getReviews = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/mainReview/Speech WizardReviews")
+      request = await axios.get("http://16.170.194.209:8080/mainReview/Speech WizardReviews")
       console.log("request")
       console.log(request.data)
       setAllReviews(request.data.reverse())
@@ -99,7 +99,7 @@ export default function Reviews() {
       console.log(id)
       console.log(reply)
 
-      request = await axios.patch("http://localhost:8080/mainReview/updateReview/" + id, reply)
+      request = await axios.patch("http://16.170.194.209:8080/mainReview/updateReview/" + id, reply)
       console.log("request")
       console.log(request)
 

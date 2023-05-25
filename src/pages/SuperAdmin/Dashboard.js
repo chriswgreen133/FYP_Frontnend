@@ -49,7 +49,7 @@ export default function Dashboard() {
   const getLiveStreams = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/videoStreaming/getStreams")
+      request = await axios.get("http://16.170.194.209:8080/videoStreaming/getStreams")
       console.log("request")
       //console.log(request.data)
       let finalArr = []
@@ -70,7 +70,7 @@ export default function Dashboard() {
   const getPosts = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/dashboard/Home")
+      request = await axios.get("http://16.170.194.209:8080/dashboard/Home")
       console.log("request")
       setAllPosts(request.data.length)
       return request.data;
@@ -83,7 +83,7 @@ export default function Dashboard() {
     async function fetchData() {
       let request;
       console.log("inside get all schools")
-      request = await axios.get("http://localhost:8080/searchSchool/search/")
+      request = await axios.get("http://16.170.194.209:8080/searchSchool/search/")
       console.log("request")
       setAllSchools(request.data.length)
       return request.data;
@@ -95,7 +95,7 @@ export default function Dashboard() {
   const getUsers = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/user_management/login")
+      request = await axios.get("http://16.170.194.209:8080/user_management/login")
       console.log("request")
       console.log(request.data)
       setAllUsers(request.data.length - 1)

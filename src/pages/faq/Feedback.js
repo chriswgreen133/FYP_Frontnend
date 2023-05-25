@@ -145,7 +145,7 @@ function Feedback(props) {
       let request;
       console.log("ReviewData")
       console.log(reviewData)
-      request = await axios.post("http://localhost:8080/mainReview/appReview", reviewData)
+      request = await axios.post("http://16.170.194.209:8080/mainReview/appReview", reviewData)
       console.log("request")
       console.log(request)
       alert("Review Added Successfully")
@@ -158,7 +158,7 @@ function Feedback(props) {
   const getReviews = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/mainReview/appReview")
+      request = await axios.get("http://16.170.194.209:8080/mainReview/appReview")
       console.log("request")
       console.log(request)
       setAllReviews(request.data)

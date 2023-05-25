@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/user_management/";
-const SuperAdminURL = "http://localhost:8080/superAdmin/"
+const API_URL = "http://16.170.194.209:8080/user_management/";
+const SuperAdminURL = "http://16.170.194.209:8080/superAdmin/"
 
 class AuthService {
 
@@ -67,7 +67,7 @@ class AuthService {
 
   setSchoolFromAdminID(adminID) {
     return axios
-      .get('http://localhost:8080/searchSchool/search/')
+      .get('http://16.170.194.209:8080/searchSchool/search/')
       .then(response => {
         console.log("response")
         console.log(response)

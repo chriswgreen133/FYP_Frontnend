@@ -81,7 +81,7 @@ export default function Post(props) {
     const getPostImg = useCallback(async () => {
         async function fetchData() {
             let request;
-            request = await axios.get("http://localhost:8080/user_management/userProfile/" + props.userID)
+            request = await axios.get("http://16.170.194.209:8080/user_management/userProfile/" + props.userID)
             console.log("request")
             console.log(request)
             setPostImg(request.data[0].profilePic)
@@ -94,7 +94,7 @@ export default function Post(props) {
     const getCommentImg = useCallback(async (object) => {
         async function fetchData() {
             let request;
-            request = await axios.get("http://localhost:8080/user_management/userProfile/" + object.userID)
+            request = await axios.get("http://16.170.194.209:8080/user_management/userProfile/" + object.userID)
             console.log("getCommentIng Request")
             console.log(request.data[0].profilePic)
             //window.location.reload()
@@ -108,7 +108,7 @@ export default function Post(props) {
             let request;
             console.log("NewData")
             console.log(newComment)
-            request = await axios.patch("http://localhost:8080/dashboard/updateComment/" + props.id, newComment)
+            request = await axios.patch("http://16.170.194.209:8080/dashboard/updateComment/" + props.id, newComment)
             console.log("request")
             console.log(request)
             //setReloadPost(true)
@@ -123,7 +123,7 @@ export default function Post(props) {
             let request;
             console.log("NewData")
             console.log(newLike)
-            request = await axios.patch("http://localhost:8080/dashboard/updateLike/" + props.id, newLike)
+            request = await axios.patch("http://16.170.194.209:8080/dashboard/updateLike/" + props.id, newLike)
             console.log("request")
             console.log(request)
             setPostlikes(request.data.totalLikes)

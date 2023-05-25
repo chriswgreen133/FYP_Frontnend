@@ -51,7 +51,7 @@ export default function Home(props) {
     async function fetchData() {
       let request;
       console.log("Inside Get User")
-      request = await axios.get("http://localhost:8080/user_management/userProfile/" + user._id)
+      request = await axios.get("http://16.170.194.209:8080/user_management/userProfile/" + user._id)
       console.log("request")
       let userDataa = request.data
       setUserData(userDataa[0])
@@ -65,7 +65,7 @@ export default function Home(props) {
   const getPosts = useCallback(async (bool) => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/dashboard/Home")
+      request = await axios.get("http://16.170.194.209:8080/dashboard/Home")
       console.log("request")
       let finalPosts = []
       let allPosts = request.data.reverse()
@@ -144,7 +144,7 @@ export default function Home(props) {
       let request;
       console.log("New Pic")
       console.log(img)
-      request = await axios.patch("http://localhost:8080/user_management/userProfile/updateProfilePic/" + user._id, img)
+      request = await axios.patch("http://16.170.194.209:8080/user_management/userProfile/updateProfilePic/" + user._id, img)
       console.log("request")
       console.log(request)
       //setReloadPost(true)

@@ -63,7 +63,7 @@ export default function Schools() {
   const getSchools = useCallback(async () => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/school/School_Details")
+      request = await axios.get("http://16.170.194.209:8080/school/School_Details")
       console.log("request")
       console.log(request.data)
       setAllSchools(request.data.reverse())
@@ -84,7 +84,7 @@ export default function Schools() {
       let request;
       console.log("SchoolID")
       console.log(schoolID)
-      request = await axios.post("http://localhost:8080/school/delete_school/" + schoolID)
+      request = await axios.post("http://16.170.194.209:8080/school/delete_school/" + schoolID)
       console.log("request")
       console.log(request)
       return request;
