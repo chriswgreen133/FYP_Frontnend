@@ -62,7 +62,7 @@ export default function Header(props) {
   const getNotifications = useCallback(async (bool) => {
     async function fetchData() {
       let request;
-      request = await axios.get("http://localhost:8080/user_management/login")
+      request = await axios.get("http://16.170.194.209:8080/user_management/login")
       console.log("request")
 
       let finalUser

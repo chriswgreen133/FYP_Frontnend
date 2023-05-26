@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Grid,
   CircularProgress,
@@ -11,15 +11,10 @@ import {
   Link
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import RadioGroup from "@material-ui/core/RadioGroup"
-import Radio from "@material-ui/core/Radio"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
 // styles
 import useStyles from "./styles";
 import AuthService from "../../services/auth.service";
-import axios from "../../Util/axios"
 import { CometChat } from "@cometchat-pro/chat"
-
 
 // logo
 // import logo from "../../logo.png";

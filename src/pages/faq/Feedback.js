@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { InputBase, Grid, Typography, Button, Tabs, Tab, TextField, Checkbox, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
+import { Grid, Button, Tabs, Tab } from "@material-ui/core";
 //import Header from '../Header/Header'
 import 'react-calendar/dist/Calendar.css';
 import { withRouter } from "react-router-dom";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Footer from "../../components/Footer/footer"
+import { makeStyles } from '@material-ui/core/styles';
 import StarRatings from 'react-star-ratings';
 // context
 import Widget from "../../components/Widget/Widget";
-import { AccountCircle, Send, Cancel, CheckCircle, BorderRight } from '@material-ui/icons'
 
 import axios from "../../Util/axios"
 import AuthService from "../../services/auth.service";

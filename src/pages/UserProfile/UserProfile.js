@@ -1,10 +1,6 @@
-import React, { useRef, useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { Typography, TextField, InputBase, Button, DialogContent, Dialog, DialogTitle, DialogActions } from "@material-ui/core";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import CommentIcon from '@material-ui/icons/Comment';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import SendIcon from '@material-ui/icons/Send';
 import AddAPhoto from '@material-ui/icons/AddAPhoto'
 
 import Post from '../home/post'
@@ -13,9 +9,6 @@ import Post from '../home/post'
 import useStyles from "./styles";
 
 // components
-import DP from './default profile pic.jpg'
-import PageTitle from "../../components/PageTitle/PageTitle";
-import PhotoIcon from '@material-ui/icons/Photo';
 import Widget from "../../components/Widget/Widget";
 import Header from '../../components/Header/Header'
 

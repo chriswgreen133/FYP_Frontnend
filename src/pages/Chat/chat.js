@@ -8,7 +8,7 @@ export default function Chat(props) {
   let userData = props.location.state
 
   let chatComponent;
-  if (userData != undefined) {
+  if (userData !== undefined) {
     chatComponent = <CometChatConversationListWithMessages chatWithUser={userData} />
   } else {
     chatComponent = <CometChatUI />

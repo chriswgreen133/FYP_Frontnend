@@ -1,36 +1,21 @@
-import React, { useRef, useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import { Typography, TextField, InputBase, Button, DialogContent, Dialog, DialogTitle, DialogActions } from "@material-ui/core";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import CommentIcon from '@material-ui/icons/Comment';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import SendIcon from '@material-ui/icons/Send';
-import AddAPhoto from '@material-ui/icons/AddAPhoto'
-//import {CometChatConversationListWithMessages} from "../../lib/cometchat";
-//import Chat from "../Chat/chat"
-
-
+import { Typography, Button } from "@material-ui/core";
 import Post from '../home/post'
-import { CometChat } from "@cometchat-pro/chat"
 
 // styles
 import useStyles from "./styles";
 
 // components
-import PageTitle from "../../components/PageTitle/PageTitle";
-import PhotoIcon from '@material-ui/icons/Photo';
 import Widget from "../../components/Widget/Widget";
 import Header from '../../components/Header/Header'
 
 import axios from "../../Util/axios"
 import AuthService from "../../services/auth.service";
-import { storage } from "../../Util/firebase"
-import { v4 as uuidv4 } from 'uuid';
 import './style.css'
 
 export default function Home(props) {
   var classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   var [allPosts, setAllPosts] = useState()
   var [userData, setUserData] = useState()
   var [currentUserData, setCurrentUserData] = useState()

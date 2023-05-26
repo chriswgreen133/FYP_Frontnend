@@ -1,19 +1,9 @@
-import React, { Fragment, useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { Grid, Typography } from "@material-ui/core";
-import Popup from 'reactjs-popup';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import marker from '../../logo.png'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import { TextField, InputBase, Button, MenuItem, Select, DialogContent, Dialog, DialogTitle, DialogActions } from "@material-ui/core";
+import { InputBase, Button } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import Widget from "../../components/Widget/Widget";
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import useStyles from "./styles";
 import ProfilePreview from './profilePreview'
 import axios from "../../Util/axios"
@@ -27,23 +17,8 @@ export default function Maps(props) {
 
   let [searchValue, setSearchValue] = useState("");
   var [searchResults, setSearchResults] = useState();
-  var [allSchools, setAllSchools] = useState()
   var [selectedBool, setSelectedBool] = useState(false)
   var [reloadProfile, setReloadProfile] = useState(false)
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleCloseReset = () => {
-    setOpen(false);
-  };
 
   const user = AuthService.getCurrentUser()
 
@@ -65,7 +40,7 @@ export default function Maps(props) {
       
       let finalArr = []
       request.data.map((userObj)=>{
-        if(userObj._id != user._id){
+        if(userObj._id !== user._id){
           finalArr.push(userObj)
         }else{
           console.log("Else")
@@ -80,10 +55,8 @@ export default function Maps(props) {
   }, [])
 
   let displayResults
-  let selectedUserValue
-  let displayProfile
 
-  if (searchResults != undefined) {
+  if (searchResults !== undefined) {
     console.log("inside displayresults")
     displayResults = searchResults.map((i) => {
       return (

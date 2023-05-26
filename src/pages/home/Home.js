@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useCallback, useContext, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import { TextField, InputBase, CircularProgress } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 // styles
 import useStyles from "./styles";

@@ -1,9 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect, withRouter, } from "react-router-dom";
-import { Box, IconButton, Link } from '@material-ui/core';
-import Icon from '@mdi/react';
-//icons
-import { mdiFacebook as FacebookIcon, mdiTwitter as TwitterIcon, mdiGithub as GithubIcon, } from '@mdi/js'
+import { Route, Switch, withRouter, } from "react-router-dom";
 // styles
 import useStyles from "./styles";
 // components
