@@ -1,1 +1,0 @@
-{"version":3,"sources":["lib/cometchat/resources/audio/incomingothermessage.wav"],"names":["module","exports"],"mappings":"uHAAAA,EAAOC,QAAU,IAA0B","file":"static/js/5.aec47958.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/incomingothermessage.81a7c846.wav\";"],"sourceRoot":""}

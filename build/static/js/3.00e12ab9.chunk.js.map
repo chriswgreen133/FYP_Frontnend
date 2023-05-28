@@ -1,1 +1,0 @@
-{"version":3,"sources":["lib/cometchat/resources/audio/incomingcall.wav"],"names":["module","exports"],"mappings":"uHAAAA,EAAOC,QAAU,IAA0B","file":"static/js/3.00e12ab9.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/incomingcall.f53bccab.wav\";"],"sourceRoot":""}
